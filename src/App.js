@@ -7,7 +7,7 @@ import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
 import Home from './components/Home';
 import Login from './components/Login';
 import Protected from './components/Protected';
-// import MessageList from './components/MessageList';
+import MessageList from './components/MessageList';
 
 function onAuthRequired({history}) {
   history.push('/login');
@@ -31,7 +31,7 @@ export default class App extends Component {
           <SecureRoute path='/protected' component={Protected} />
           <Route path='/login' render={() => <Login baseUrl='https://dev-304959.okta.com' />} />
           <Route path='/implicit/callback' component={ImplicitCallback} />
-          {/* <Route path='/api/messages' component={MessageList}/> */}
+          <Route path='/api/messages' component={MessageList}/>
         </Security>
     </Router>
     );
