@@ -8,10 +8,12 @@ export default class OktaSignInWidget extends Component {
   componentDidMount() {
     const el = ReactDOM.findDOMNode(this);
     this.widget = new OktaSignIn({
+      features: {
+        registration: true,
+        rememberMe: true,
+      },
       baseUrl: this.props.baseUrl,
-      idps: {
-        type: 'GOOGLE', id: '0oajqv6hb518iYQoQ0h7',
-      }
+      logo: '//logo.clearbit.com/okta.com'
     });
     this.widget.renderEl({el}, this.props.onSuccess, this.props.onError);
   }
