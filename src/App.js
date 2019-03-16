@@ -7,50 +7,38 @@ import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
 import Home from './components/Home';
 import Login from './components/Login';
 import Protected from './components/Protected';
+// import MessageList from './components/MessageList';
 
 function onAuthRequired({history}) {
   history.push('/login');
+}
+
+const config = {
+  issuer: 'https://dev-304959.okta.com/oauth2/default',
+  redirect_uri: window.location.origin + '/implicit/callback',
+  client_id: '0oacuk1msUGa9iaIQ356'
 }
 
 export default class App extends Component {
   render() {
     return (
       <Router>
-        <Security issuer='https://dev-304959.okta.com/oauth2/default'
-                client_id='0oacr8ld4Vb5sNKZI356'
-                redirect_uri={window.location.origin + '/implicit/callback'}
-                onAuthRequired={onAuthRequired} >
+        <Security issuer={config.issuer}
+                  client_id={config.client_id}
+                  redirect_uri={config.redirect_uri}
+                  onAuthRequired={onAuthRequired} >
           <Route path='/' exact={true} component={Home} />
           <SecureRoute path='/protected' component={Protected} />
           <Route path='/login' render={() => <Login baseUrl='https://dev-304959.okta.com' />} />
           <Route path='/implicit/callback' component={ImplicitCallback} />
+          {/* <Route path='/api/messages' component={MessageList}/> */}
         </Security>
     </Router>
     );
   }
 }
 
-// import React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default class App extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Changed text and App reloaded immediately!</Text>
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+// <------ DON'T DELETE COMMENTED CODE, IT IS FOR FUTUTE REFERNCE ------->
 
 // import React, { Component } from 'react';
 // import { Alert, UIManager, LayoutAnimation } from 'react-native';
@@ -69,7 +57,7 @@ export default class App extends Component {
 
 // const config = {
 //   issuer: 'https://dev-304959.okta.com/oauth2/default',
-//   clientId: '0oacr8ld4Vb5sNKZI356',
+//   clientId: '0oacuk1msUGa9iaIQ356',
 //   redirectUrl: 'https://localhost:3000:/callback',
 //   additionalParameters: {},
 //   scopes: ['openid', 'profile', 'email', 'offline_access']
