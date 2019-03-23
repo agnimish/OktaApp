@@ -1,5 +1,5 @@
-# Octa-App
-An application made for Octa hackathon which serves as a hub to all of your transactions.
+# Okta-App
+An application made for Okta hackathon which serves as a hub to all of your transactions.
 
 ## Steps for running application on phone and web.
 
