@@ -2,4 +2,6 @@ node_modules
 
 ./src/config.js
 
+./src/.samples.config.js
+
 *.log  

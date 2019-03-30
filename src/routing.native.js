@@ -1,13 +1,14 @@
 import { NativeRouter as Router, Route } from 'react-router-native';
-
 import React, { Component } from 'react'
 
-export default class componentName extends Component {
+import {config_mobile as config} from './config';
+
+export default class RouterMobile extends Component {
     render() {
         return (
-            <div>
-                
-            </div>
-        )
+            <Router>
+
+            </Router>
+        );
     }
 }

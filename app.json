@@ -4,7 +4,6 @@
     "slug": "OktaApp",
     "privacy": "public",
     "sdkVersion": "32.0.0",
-    "scheme": "{yourOktaScheme}",
     "platforms": [
       "ios",
       "android"
