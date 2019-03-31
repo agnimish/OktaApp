@@ -27,7 +27,6 @@ export default withAuth(class Login extends Component {
 
   onSuccess(res) {
     // Consoling Okta Sign-in response (REMOVE LATER)
-    console.log(res);
     if (res.status === 'SUCCESS') {
       return this.props.auth.redirect({
         sessionToken: res.session.token

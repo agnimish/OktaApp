@@ -22,7 +22,7 @@ export default class MailList extends Component {
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
             dataSource: ds.cloneWithRows([
-                '1', '2', '3', '4', '5', '6', '7', '8' //just used to populate the list
+                {icon:'S',name:"Sudhanshu",description:"Front-end-noob",num:42}, {icon:'N',name:"Nimish",description:"Front-end-pro",num:7} //just used to populate the list
             ]),
             height: new Animated.Value(0)
         };
@@ -37,7 +37,7 @@ export default class MailList extends Component {
 
     _renderRow(row) {
         return (
-            <MailListItem showUndo={this.showUndo} />
+            <MailListItem showUndo={this.showUndo} data={row}/>
         )
     }
 

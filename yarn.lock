@@ -10890,9 +10890,9 @@ react-native-maps@expo/react-native-maps#v0.22.1-exp.0:
   version "0.22.1"
   resolved "https://codeload.github.com/expo/react-native-maps/tar.gz/e6f98ff7272e5d0a7fe974a41f28593af2d77bb2"
 
-"react-native-maps@git+https://github.com/exponentjs/react-native-maps.git#12853f0":
+"react-native-maps@git+https://github.com/exponentjs/react-native-maps#12853f0":
   version "0.11.0"
-  resolved "git+https://github.com/exponentjs/react-native-maps.git#12853f03686f7f8af11d853e629afcb8146e50c8"
+  resolved "git+https://github.com/exponentjs/react-native-maps#12853f03686f7f8af11d853e629afcb8146e50c8"
 
 react-native-ratings@^6.3.0:
   version "6.3.1"
@@ -10933,9 +10933,9 @@ react-native-svg@8.0.10:
     lodash "^4.16.6"
     pegjs "^0.10.0"
 
-"react-native-svg@git+https://github.com/exponentjs/react-native-svg.git#afadb19":
+"react-native-svg@git+https://github.com/exponentjs/react-native-svg#afadb19":
   version "4.2.1"
-  resolved "git+https://github.com/exponentjs/react-native-svg.git#afadb190e6802a34ee34a95664b64e928f466397"
+  resolved "git+https://github.com/exponentjs/react-native-svg#afadb190e6802a34ee34a95664b64e928f466397"
   dependencies:
     color "^0.11.1"
     lodash "^4.0.0"

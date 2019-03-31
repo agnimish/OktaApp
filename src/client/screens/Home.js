@@ -39,7 +39,9 @@ import {
     Modal,
     TouchableOpacity,
     StyleSheet,
-    StatusBar
+    StatusBar,
+    Button,
+    ScrollView
 } from 'react-native';
 
 import Header from './header';
@@ -47,7 +49,7 @@ import MailList from './mail-list';
 import ComposeMail from './compose-mail';
 
 import ActionButton from 'react-native-action-button';
-// import { Ionicons as Icon } from '@exponent/vector-icons';
+import { Ionicons as Icon } from '@expo/vector-icons';
 import colors from './colors';
 
 
@@ -185,9 +187,6 @@ export default class Home extends Component {
                 <StatusBar animated={true} barStyle={modal ? "default" : "light-content"}/>
                 <Header />
                 <MailList showUndo={this.showUndo}/>
-                {this.renderFOB()}
-                {this.renderUndo()}
-                {this.renderModal()}
             </View>
         )
     }

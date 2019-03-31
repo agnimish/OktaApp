@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19003,
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 15936,
+  "expoServerNgrokUrl": "https://u9-yrs.anonymous.oktaapp.exp.direct",
+  "packagerNgrokUrl": "https://packager.u9-yrs.anonymous.oktaapp.exp.direct",
+  "ngrokPid": 15982,
   "webpackServerPort": null
 }
