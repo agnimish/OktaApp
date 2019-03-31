@@ -9,6 +9,7 @@ import Home from './screens/Home'
 export default class Index extends Component {
       state = {
         authentication: false,
+        user: {},
       }
 
       checkAuthentication = async() => {
@@ -28,6 +29,8 @@ export default class Index extends Component {
   logIn = async() => {
     await tokenClient.signInWithRedirect()
     .then((res) => {
+      this.setState({user:res.access_token,})
+    console.log(JSON.stringify(this.state.user));
       console.log("Success", res)
     })
     .catch((err) => {
@@ -43,12 +46,14 @@ export default class Index extends Component {
   }
 
   render() {
+    console.log(JSON.stringify(this.state));
     const { authentication } = this.state;
     return (
       <React.Fragment>
-        {authentication ?
+        {0 ?
           <Home 
           onLogout={async () => {this.logOut()}}
+          accessToken={this.state.user.accessToken}
           />
          :
          <Login

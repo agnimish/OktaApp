@@ -3,17 +3,9 @@
 
 // export default class Home extends React.Component {
 //     render() {
-//         const { onLogout } =  this.props
+
 //         return (
-//         <ScrollView>
-//             <View style={styles.container} >
-//             <Text style={{ textAlign: 'center' }} >Welcome! </Text>
-//                 <Button
-//                 onPress={onLogout}
-//                 title="Logout"
-//                 />
-//              </View>
-//         </ScrollView>
+
 //         )
 //     }
 // }
@@ -63,11 +55,13 @@ export default class Home extends Component {
             offset: 0,
             undoShown: false,
             modal: false,
+            userData: [],
         }
         this.showUndo = this.showUndo.bind(this);
         this.hideUndo = this.hideUndo.bind(this);
 
     }
+    const { onLogout } =  this.props
     showUndo() {
         if(this.state.undoShown) {
             clearTimeout(this.timeout);
@@ -160,7 +154,7 @@ export default class Home extends Component {
                 // icon={<Icon name='md-create' style={styles.actionButtonIcon}/>}
                 offsetY={offset}
                 offsetX={0}
-                onPress={() => {this.setState({modal: true})}}
+                onPress={onLogout}
             />
         )
     }
@@ -177,16 +171,32 @@ export default class Home extends Component {
             </Modal>
         )
     }
+    getUserData() {
+        fetch("172.23.148.154:8080/api/v1/user", {
+            method: 'GET',
+            headers: `Authorization: \"Bearer ${this.props.accessToken}\"`,
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+            console.log(
+                "POST Response",
+                "Response Body -> " + JSON.stringify(responseData)
+            );
+            this.setState({userData: responseData});
+        })
+        .done();
+
+    }
 
     render() {
         const {modal} = this.state;
-
+        console.log(this.getUserData());
 
         return (
             <View style={{flex: 1}}>
                 <StatusBar animated={true} barStyle={modal ? "default" : "light-content"}/>
                 <Header />
-                <MailList showUndo={this.showUndo}/>
+                <MailList showUndo={this.showUndo} data={[]}/>
             </View>
         )
     }

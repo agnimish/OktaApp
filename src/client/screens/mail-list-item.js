@@ -115,7 +115,6 @@ export default class MailListItem extends Component {
 
 
     render() {
-        console.log(this.props);
 
         const {star, iconColor, alphabet, height} = this.state;
         const {yellow} = colors;

@@ -21,9 +21,9 @@ export default class MailList extends Component {
         super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
-            dataSource: ds.cloneWithRows([
-                {icon:'S',name:"Sudhanshu",description:"Front-end-noob",num:42}, {icon:'N',name:"Nimish",description:"Front-end-pro",num:7} //just used to populate the list
-            ]),
+            dataSource: ds.cloneWithRows(
+                props.data //just used to populate the list
+            ),
             height: new Animated.Value(0)
         };
 
