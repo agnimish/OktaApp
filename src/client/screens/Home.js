@@ -1,4 +1,3 @@
-/*** Created by ggoma on 2016. 11. 26.. */
 import React, {Component} from 'react';
 import {
     Animated,
@@ -8,7 +7,9 @@ import {
     Modal,
     TouchableOpacity,
     StyleSheet,
-    StatusBar
+    StatusBar,
+    Button,
+    ScrollView
 } from 'react-native';
 
 import Header from './header';
@@ -30,7 +31,7 @@ export default class Home extends Component {
             offset: 10,
             undoShown: false,
             modal: false,
-            userData: []
+            userData: [],
         }
         this.showUndo = this.showUndo.bind(this);
         this.hideUndo = this.hideUndo.bind(this);
@@ -52,7 +53,6 @@ export default class Home extends Component {
         })
         .done();
     }
-
     showUndo() {
         if(this.state.undoShown) {
             clearTimeout(this.timeout);
@@ -143,7 +143,7 @@ export default class Home extends Component {
         const { onLogout } =  this.props;
         return (
             <ActionButton 
-                buttonColor="rgba(231,76,60,1)"
+                buttonColor="rgba(231,76,60,1)">
                 offsetX={10}
                 offsetY={offset}>
                 <ActionButton.Item buttonColor='#9b59b6' title="Logout" onPress={onLogout}>
@@ -174,15 +174,37 @@ export default class Home extends Component {
             </Modal>
         )
     }
+    componentDidMount = () => {
+        console.log("in")
+        console.log(this.props.accessToken)
+        fetch("http://172.23.148.154:8080/api/v1/user", {
+            method: 'GET',
+            headers: 
+            {
+                'Authorization': 'Bearer ' + this.props.accessToken,
+            }
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+            console.log(
+                "Response Body -> " + JSON.stringify(responseData)
+            );
+            console.log(JSON.stringify(responseData));
+            // this.setState({userData: responseData});
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
+    }
 
     render() {
         const {modal} = this.state;
-        this.getUserData();
         return (
             <View style={{flex: 1}}>
                 <StatusBar animated={true} barStyle={modal ? "default" : "light-content"}/>
                 <Header/>
-                <MailList showUndo={this.showUndo} userData={this.state.userData}/>
+                <MailList showUndo={this.showUndo} data={[{name:"Sudhanshu"},{name:"Nimish"}]}/>
                 {this.renderFOB()}
                 {this.renderUndo()}
                 {this.renderModal()}
