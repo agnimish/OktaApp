@@ -11,7 +11,7 @@ TouchableOpacity,
 StyleSheet,
 } from 'react-native';
 import colors from './colors';
-import { Ionicons } from '@exponent/vector-icons';
+// import { Ionicons } from '@exponent/vector-icons';
 const {width} = Dimensions.get('window');
 
 export default class ComposeMail extends Component {
@@ -23,11 +23,11 @@ export default class ComposeMail extends Component {
                 <View style={{padding: 16, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
                 borderBottomColor: lightGray, borderBottomWidth: 0.7}}>
                     <TouchableOpacity onPress={this.props.onPress}>
-                        <Ionicons name='ios-arrow-back' color='gray' size={24} />
+                        {/* <Ionicons name='ios-arrow-back' color='gray' size={24} /> */}
                     </TouchableOpacity>
                     <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-                        <Ionicons name='md-attach' color='gray' size={24} style={{paddingRight: 24}}/>
-                        <Ionicons name='md-send' color='gray' size={24} />
+                        {/* <Ionicons name='md-attach' color='gray' size={24} style={{paddingRight: 24}}/> */}
+                        {/* <Ionicons name='md-send' color='gray' size={24} /> */}
                     </View>
                 </View>
 

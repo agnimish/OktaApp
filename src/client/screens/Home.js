@@ -47,7 +47,7 @@ import MailList from './mail-list';
 import ComposeMail from './compose-mail';
 
 import ActionButton from 'react-native-action-button';
-import { Ionicons as Icon } from '@exponent/vector-icons';
+// import { Ionicons as Icon } from '@exponent/vector-icons';
 import colors from './colors';
 
 
@@ -155,7 +155,7 @@ export default class Home extends Component {
         return (
             <ActionButton
                 buttonColor="rgba(231,76,60,1)"
-                icon={<Icon name='md-create' style={styles.actionButtonIcon}/>}
+                // icon={<Icon name='md-create' style={styles.actionButtonIcon}/>}
                 offsetY={offset}
                 offsetX={0}
                 onPress={() => {this.setState({modal: true})}}

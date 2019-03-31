@@ -17,7 +17,7 @@ const {width} = Dimensions.get('window');
 
 import {randomHex, randomAlphabet} from './helpers';
 import colors from './colors';
-import { Ionicons } from '@exponent/vector-icons';
+// import { Ionicons } from '@exponent/vector-icons';
 
 export default class MailListItem extends Component {
     constructor() {
@@ -97,7 +97,7 @@ export default class MailListItem extends Component {
                                 outputRange: [0, 1]
                             })}]
                         }}>
-                    <Ionicons name='md-archive' color='white' size={24}/>
+                    {/* <Ionicons name='md-archive' color='white' size={24}/> */}
                 </Animated.View>
 
                 <Animated.View style={{position: 'absolute', right: 25, top: 30,
@@ -106,7 +106,7 @@ export default class MailListItem extends Component {
                     outputRange: [0, 1]
                 })}]
                 }}>
-                    <Ionicons name='md-archive' color='white' size={24}/>
+                    {/* <Ionicons name='md-archive' color='white' size={24}/> */}
                 </Animated.View>
             </View>
 
@@ -159,7 +159,7 @@ export default class MailListItem extends Component {
                                     </Text>
                                 </View>
                                 <TouchableOpacity onPress={this.starPressed} style={{padding: 12}}>
-                                    <Ionicons name={star ? 'md-star' : 'md-star-outline'} color={star ? yellow : 'gray'} size={24} />
+                                    {/* <Ionicons name={star ? 'md-star' : 'md-star-outline'} color={star ? yellow : 'gray'} size={24} /> */}
                                 </TouchableOpacity>
                             </View>
 
