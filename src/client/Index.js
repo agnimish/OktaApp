@@ -29,9 +29,8 @@ export default class Index extends Component {
   logIn = async() => {
     await tokenClient.signInWithRedirect()
     .then((res) => {
-      this.setState({user:res.access_token,})
-    console.log(JSON.stringify(this.state.user));
-      console.log("Success", res)
+      console.log("Success", res);
+      this.setState({ user: res });
     })
     .catch((err) => {
       console.log("Error", err)
@@ -50,15 +49,9 @@ export default class Index extends Component {
     const { authentication } = this.state;
     return (
       <React.Fragment>
-        {0 ?
-          <Home 
-          onLogout={async () => {this.logOut()}}
-          accessToken={this.state.user.accessToken}
-          />
-         :
-         <Login
-         onLogin={async () => {this.logIn()}}
-         />
+        {authentication ?
+          <Home onLogout={async () => {this.logOut()}} accessToken={this.state.user.accessToken}/> :
+          <Login onLogin={async () => {this.logIn()}} />
          }
       </React.Fragment>
     )

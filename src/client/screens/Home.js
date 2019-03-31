@@ -1,27 +1,3 @@
-// import React, { Component } from 'react';
-// import { View, Text, Button,ScrollView, StyleSheet,} from 'react-native';
-
-// export default class Home extends React.Component {
-//     render() {
-
-//         return (
-
-//         )
-//     }
-// }
-
-// const styles = StyleSheet.create({
-//     container: {
-//         flex: 1,
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         paddingTop: 150
-//     }
-// })
-
-/**
- * Created by ggoma on 2016. 11. 26..
- */
 import React, {Component} from 'react';
 import {
     Animated,
@@ -52,16 +28,31 @@ export default class Home extends Component {
         super()
         this.state = {
             undoHeight: new Animated.Value(0),
-            offset: 0,
+            offset: 10,
             undoShown: false,
             modal: false,
             userData: [],
         }
         this.showUndo = this.showUndo.bind(this);
         this.hideUndo = this.hideUndo.bind(this);
-
+        this.getUserData = this.getUserData.bind(this);
     }
-    const { onLogout } =  this.props
+
+    getUserData() {
+        fetch("172.23.148.154:8080/api/v1/user", {
+            method: 'GET',
+            headers: `Authorization: \"Bearer ${this.props.accessToken}\"`,
+        })
+        .then((response) => response.json())
+        .then((responseData) => {
+            console.log(
+                "POST Response",
+                "Response Body -> " + JSON.stringify(responseData)
+            );
+            this.setState({userData: responseData});
+        })
+        .done();
+    }
     showUndo() {
         if(this.state.undoShown) {
             clearTimeout(this.timeout);
@@ -146,19 +137,31 @@ export default class Home extends Component {
         )
     }
 
-    renderFOB() {
+    // To display logout button
+    renderFOB(offsetXValue) {
         const {offset} = this.state;
+        const { onLogout } =  this.props;
         return (
-            <ActionButton
-                buttonColor="rgba(231,76,60,1)"
-                // icon={<Icon name='md-create' style={styles.actionButtonIcon}/>}
-                offsetY={offset}
-                offsetX={0}
-                onPress={onLogout}
-            />
+            <ActionButton 
+                buttonColor="rgba(231,76,60,1)">
+                offsetX={10}
+                offsetY={offset}>
+                <ActionButton.Item buttonColor='#9b59b6' title="Logout" onPress={onLogout}>
+                    <Icon name="md-create" style={styles.actionButtonIcon} />
+                </ActionButton.Item>
+                <ActionButton.Item buttonColor='#9b59b6' title="Create" onPress={() => {this.setState({modal: true})}}>
+                    <Icon name="md-create" style={styles.actionButtonIcon} />
+                </ActionButton.Item>
+            </ActionButton>
+                // // icon={<Icon name='md-create' style={styles.actionButtonIcon}/>}
+                // offsetY={offset}
+                // offsetX={offsetXValue}
+                // // onPress={() => {this.setState({modal: true})}}
+                // onPress={onLogout}
         )
     }
 
+    // To open compose screen
     renderModal() {
         return (
             <Modal
@@ -190,17 +193,18 @@ export default class Home extends Component {
 
     render() {
         const {modal} = this.state;
-        console.log(this.getUserData());
-
+        this.getUserData();
         return (
             <View style={{flex: 1}}>
                 <StatusBar animated={true} barStyle={modal ? "default" : "light-content"}/>
-                <Header />
-                <MailList showUndo={this.showUndo} data={[]}/>
+                <Header/>
+                <MailList showUndo={this.showUndo} userData={this.state.userData}/>
+                {this.renderFOB()}
+                {this.renderUndo()}
+                {this.renderModal()}
             </View>
         )
     }
-
 
 }
 
