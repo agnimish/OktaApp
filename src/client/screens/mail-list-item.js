@@ -72,14 +72,11 @@ export default class MailListItem extends Component {
 
         var e = event.nativeEvent;
 
-
         const xOffset = Math.abs(e.contentOffset.x);
         if (xOffset < 80) {
             this.state.offset.setValue(xOffset);
         }
-
         this.offset_x = xOffset;
-
 
     }
 
@@ -88,7 +85,6 @@ export default class MailListItem extends Component {
         if(deleted) {
             return
         }
-
         return (
             <View>
                 <Animated.View style={{position: 'absolute', left: 25, top: 30,
@@ -106,10 +102,9 @@ export default class MailListItem extends Component {
                     outputRange: [0, 1]
                 })}]
                 }}>
-                    {/* <Ionicons name='md-archive' color='white' size={24}/> */}
+                    <Ionicons name='md-archive' color='white' size={24}/>
                 </Animated.View>
             </View>
-
         )
     }
 
@@ -139,26 +134,26 @@ export default class MailListItem extends Component {
                         <View style={{width: 50, justifyContent: 'center', alignItems: 'center', paddingLeft: 14}} >
                             <View style={{backgroundColor: iconColor, height: 40, width: 40,
                         borderRadius: 40, justifyContent: 'center', alignItems: 'center'}}>
-                                <Text style={{color:'rgba(255,255,255,.5)', fontSize: 24, fontWeight: '700'}}>{this.props.data.icon}</Text>
+                                <Text style={{color:'rgba(255,255,255,.5)', fontSize: 24, fontWeight: '700'}}>{this.props.logs.category[0]}</Text>
                             </View>
                         </View>
                         <View style={{flex: 1, padding: 16, justifyContent: 'center'}}>
                             <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start'}}>
-                                <Text style={{fontSize: 18, color: 'black', fontWeight: '700'}}>{this.props.data.name}</Text>
-                                <Text style={{fontSize: 12, color: '#3b60c4'}}>{this.props.data.num}</Text>
+                                <Text style={{fontSize: 18, color: 'black', fontWeight: '700'}}>{this.props.logs.title}</Text>
+                                <Text style={{fontSize: 12, color: '#3b60c4'}}>{this.props.logs.amount}</Text>
                             </View>
 
                             <View style={{flexDirection: 'row', paddingRight: 24, paddingTop: 2}}>
                                 <View>
                                     <Text style={{fontWeight: '700'}} ellipsizeMode="tail" numberOfLines={1}>
-                                        {this.props.data.description}
+                                        {this.props.logs.uniqueRefId}
                                     </Text>
                                     <Text style={{color: 'gray', paddingTop: 2}} ellipsizeMode="tail" numberOfLines={1}>
-                                        The mail content description goes here here here heere
+                                        {this.props.logs.completeLog.substring(1,40)}
                                     </Text>
                                 </View>
                                 <TouchableOpacity onPress={this.starPressed} style={{padding: 12}}>
-                                    {/* <Ionicons name={star ? 'md-star' : 'md-star-outline'} color={star ? yellow : 'gray'} size={24} /> */}
+                                    <Ionicons name={star ? 'md-star' : 'md-star-outline'} color={star ? yellow : 'gray'} size={24} />
                                 </TouchableOpacity>
                             </View>
 

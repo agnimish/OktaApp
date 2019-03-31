@@ -15,7 +15,7 @@ import {
 import Header from './header';
 import MailList from './mail-list';
 import ComposeMail from './compose-mail';
-
+import tokenClient from '../api/TokenClient';
 import ActionButton from 'react-native-action-button';
 import { Ionicons as Icon } from '@expo/vector-icons';
 import colors from './colors';
@@ -31,28 +31,29 @@ export default class Home extends Component {
             offset: 10,
             undoShown: false,
             modal: false,
-            userData: [],
+            userData: [{name:"Sudhanshu", icon:"S"},{name:"Nimish", icon:"N"}],
         }
         this.showUndo = this.showUndo.bind(this);
         this.hideUndo = this.hideUndo.bind(this);
-        this.getUserData = this.getUserData.bind(this);
     }
 
-    getUserData() {
-        fetch("172.23.148.154:8080/api/v1/user", {
+    async componentDidMount() {
+        fetch("http://172.23.148.154:8080/api/v1/user", {
             method: 'GET',
-            headers: `Authorization: \"Bearer ${this.props.accessToken}\"`,
+            headers: {
+                Authorization: `Bearer ${await tokenClient.getAccessToken()}`,
+            },
         })
         .then((response) => response.json())
         .then((responseData) => {
             console.log(
-                "POST Response",
                 "Response Body -> " + JSON.stringify(responseData)
             );
             this.setState({userData: responseData});
         })
         .done();
     }
+
     showUndo() {
         if(this.state.undoShown) {
             clearTimeout(this.timeout);
@@ -174,29 +175,6 @@ export default class Home extends Component {
             </Modal>
         )
     }
-    componentDidMount = () => {
-        console.log("in")
-        console.log(this.props.accessToken)
-        fetch("http://172.23.148.154:8080/api/v1/user", {
-            method: 'GET',
-            headers: 
-            {
-                'Authorization': 'Bearer ' + this.props.accessToken,
-            }
-        })
-        .then((response) => response.json())
-        .then((responseData) => {
-            console.log(
-                "Response Body -> " + JSON.stringify(responseData)
-            );
-            console.log(JSON.stringify(responseData));
-            // this.setState({userData: responseData});
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-
-    }
 
     render() {
         const {modal} = this.state;
@@ -204,7 +182,7 @@ export default class Home extends Component {
             <View style={{flex: 1}}>
                 <StatusBar animated={true} barStyle={modal ? "default" : "light-content"}/>
                 <Header/>
-                <MailList showUndo={this.showUndo} data={[{name:"Sudhanshu"},{name:"Nimish"}]}/>
+                <MailList showUndo={this.showUndo} data={this.state.userData}/>
                 {this.renderFOB()}
                 {this.renderUndo()}
                 {this.renderModal()}
