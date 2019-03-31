@@ -31,7 +31,7 @@ export default class Home extends Component {
             offset: 10,
             undoShown: false,
             modal: false,
-            userData: [{name:"Sudhanshu", icon:"S"},{name:"Nimish", icon:"N"}],
+            userData: {},
         }
         this.showUndo = this.showUndo.bind(this);
         this.hideUndo = this.hideUndo.bind(this);
@@ -49,7 +49,7 @@ export default class Home extends Component {
             console.log(
                 "Response Body -> " + JSON.stringify(responseData)
             );
-            this.setState({userData: responseData});
+            // this.setState({userData: responseData});
         })
         .done();
     }
@@ -125,7 +125,6 @@ export default class Home extends Component {
             outputRange: [0, 1],
         })
 
-
         return (
             <Animated.View style={{height: undoHeight, width, position: 'absolute', bottom: 0, backgroundColor: black}}>
                 <Animated.View style={{flex: 1, opacity, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -138,7 +137,7 @@ export default class Home extends Component {
         )
     }
 
-    // To display logout button
+    // To display Active Buttons
     renderFOB(offsetXValue) {
         const {offset} = this.state;
         const { onLogout } =  this.props;
