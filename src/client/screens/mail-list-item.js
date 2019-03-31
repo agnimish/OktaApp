@@ -17,7 +17,7 @@ const {width} = Dimensions.get('window');
 
 import {randomHex, randomAlphabet} from './helpers';
 import colors from './colors';
-// import { Ionicons } from '@exponent/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default class MailListItem extends Component {
     constructor() {

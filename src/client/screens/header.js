@@ -7,7 +7,7 @@ View,
 Text,
 } from 'react-native';
 
-// import { Ionicons } from '@exponent/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import colors from './colors';
 
 export default class Header extends Component {
@@ -17,9 +17,9 @@ export default class Header extends Component {
         return (
             <View style={{height: 70, backgroundColor: red, paddingTop: 20}}>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', padding: 12}}>
-                    {/* <Ionicons name="md-menu" size={24} color="white" /> */}
-                    <Text style={{color: 'white', fontSize: 18, fontWeight: '500'}}>Primary</Text>
-                    {/* <Ionicons name="md-search" size={24} color="white" /> */}
+                    <Ionicons name="md-menu" size={24} color="white" />
+                    <Text style={{color: 'white', fontSize: 18, fontWeight: '500'}}>Your Transaction Logs</Text>
+                    <Ionicons name="md-search" size={24} color="white" />
                 </View>
             </View>
         )

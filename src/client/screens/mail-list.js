@@ -13,9 +13,6 @@ StyleSheet
 
 import MailListItem from './mail-list-item';
 
-
-
-
 export default class MailList extends Component {
     constructor(props) {
         super(props);
@@ -35,9 +32,9 @@ export default class MailList extends Component {
         this.props.showUndo();
     }
 
-    _renderRow(row) {
+    _renderRow(data) {
         return (
-            <MailListItem showUndo={this.showUndo} />
+            <MailListItem showUndo={this.showUndo}/>
         )
     }
 
