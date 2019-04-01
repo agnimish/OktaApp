@@ -1,10 +1,19 @@
 {
   "devToolsPort": 19002,
+<<<<<<< HEAD
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 2337,
+  "expoServerNgrokUrl": "https://sa-nnh.anonymous.oktaapp.exp.direct",
+  "packagerNgrokUrl": "https://packager.sa-nnh.anonymous.oktaapp.exp.direct",
+  "ngrokPid": 2418,
+=======
   "expoServerPort": null,
   "packagerPort": null,
   "packagerPid": null,
   "expoServerNgrokUrl": "https://uz-p7t.anonymous.oktaapp.exp.direct",
   "packagerNgrokUrl": "https://packager.uz-p7t.anonymous.oktaapp.exp.direct",
   "ngrokPid": 13437,
+>>>>>>> fa2ad76cb5afc1ab3f7fda1ca38cfa8d8495be94
   "webpackServerPort": null
 }

@@ -29,9 +29,20 @@ export default class Home extends Component {
         this.state = {
             undoHeight: new Animated.Value(0),
             offset: 10,
+            isLoading: true,
             undoShown: false,
             modal: false,
-            userData: {},
+            userData: {name:"Sudhanshu", icon:"S",
+            "logs":[{
+                "amount": 1000,
+                "boolPersonal": false,
+                "category": "Personal",
+                "completeLog": "Message for testing hey are you there this is agin done.",
+                "msgRefId": "123456789",
+                "secUsername": "",
+                "title": "Testing log title: Messag",
+                "uniqueRefId": "07f784ae0abc5048d4c53aa38591687f8d268bdd1007a60bfab9ba59"
+            }]},
         }
         this.showUndo = this.showUndo.bind(this);
         this.hideUndo = this.hideUndo.bind(this);
@@ -48,8 +59,9 @@ export default class Home extends Component {
         .then((responseData) => {
             console.log(
                 "Response Body -> " + JSON.stringify(responseData)
-            );
-            // this.setState({userData: responseData});
+            );  
+            this.setState({userData: responseData});
+            this.setState({isLoading: false});
         })
         .done();
     }
@@ -176,7 +188,13 @@ export default class Home extends Component {
     }
 
     render() {
+        console.log(this.state.userData)
         const {modal} = this.state;
+        if (this.state.isLoading) {
+            console.log("innn")
+          return (<View><Text>Loading...</Text></View>)
+        }
+        console.log("out")
         return (
             <View style={{flex: 1}}>
                 <StatusBar animated={true} barStyle={modal ? "default" : "light-content"}/>
