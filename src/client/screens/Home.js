@@ -137,7 +137,6 @@ export default class Home extends Component {
             outputRange: [0, 1],
         })
 
-
         return (
             <Animated.View style={{height: undoHeight, width, position: 'absolute', bottom: 0, backgroundColor: black}}>
                 <Animated.View style={{flex: 1, opacity, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -150,7 +149,7 @@ export default class Home extends Component {
         )
     }
 
-    // To display logout button
+    // To display Active Buttons
     renderFOB(offsetXValue) {
         const {offset} = this.state;
         const { onLogout } =  this.props;
