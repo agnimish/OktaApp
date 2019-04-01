@@ -149,7 +149,7 @@ export default class MailListItem extends Component {
                                         {this.props.logs.uniqueRefId}
                                     </Text>
                                     <Text style={{color: 'gray', paddingTop: 2}} ellipsizeMode="tail" numberOfLines={1}>
-                                        {this.props.logs.completeLog.substring(1,40)}
+                                        {this.props.logs.completeLog.substring(0,40)}
                                     </Text>
                                 </View>
                                 <TouchableOpacity onPress={this.starPressed} style={{padding: 12}}>
