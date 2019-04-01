@@ -12,6 +12,7 @@ StyleSheet
 } from 'react-native';
 
 import MailListItem from './mail-list-item';
+import { Button } from 'react-native-elements';
 
 export default class MailList extends Component {
     constructor(props) {

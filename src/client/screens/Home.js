@@ -14,12 +14,12 @@ import {
 
 import Header from './header';
 import MailList from './mail-list';
-import ComposeMail from './compose-mail';
+// import ComposeMail from './SmsListenerService';
 import tokenClient from '../api/TokenClient';
 import ActionButton from 'react-native-action-button';
 import { Ionicons as Icon } from '@expo/vector-icons';
 import colors from './colors';
-
+import SmsListener from 'react-native-android-sms-listener'
 
 const {width} = Dimensions.get('window');
 
@@ -32,23 +32,51 @@ export default class Home extends Component {
             isLoading: true,
             undoShown: false,
             modal: false,
-            userData: {name:"Sudhanshu", icon:"S",
-            "logs":[{
-                "amount": 1000,
-                "boolPersonal": false,
-                "category": "Personal",
-                "completeLog": "Message for testing hey are you there this is agin done.",
-                "msgRefId": "123456789",
-                "secUsername": "",
-                "title": "Testing log title: Messag",
-                "uniqueRefId": "07f784ae0abc5048d4c53aa38591687f8d268bdd1007a60bfab9ba59"
-            }]},
+            userData: {},
         }
         this.showUndo = this.showUndo.bind(this);
         this.hideUndo = this.hideUndo.bind(this);
     }
 
+    async requestReadSmsPermission() {
+        try {
+          var granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.READ_SMS, {
+              title: 'Auto Verification OTP',
+              message: 'need access to read sms, to verify OTP'
+            }
+          );
+          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+            alert('READ_SMS permissions granted', granted);
+            console.log('READ_SMS permissions granted', granted);
+            granted = await PermissionsAndroid.request(
+              PermissionsAndroid.PERMISSIONS.RECEIVE_SMS, {
+                title: 'Receive SMS',
+                message: 'Need access to receive sms, to verify OTP'
+              }
+            );
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+              alert('RECEIVE_SMS permissions granted', granted);
+              console.log('RECEIVE_SMS permissions granted', granted);
+            } else {
+              alert('RECEIVE_SMS permissions denied');
+              console.log('RECEIVE_SMS permissions denied');
+            }
+          } else {
+            alert('READ_SMS permissions denied');
+            console.log('READ_SMS permissions denied');
+          }
+        } catch (err) {
+          alert(err);
+        }
+      }    
+
     async componentDidMount() {
+        this.requestReadSmsPermission();
+        SmsListener.addListener(message => {
+            alert(message);
+            console.log(message);
+        });
         fetch("http://172.23.148.154:8080/api/v1/user", {
             method: 'GET',
             headers: {
@@ -165,44 +193,36 @@ export default class Home extends Component {
                     <Icon name="md-create" style={styles.actionButtonIcon} />
                 </ActionButton.Item>
             </ActionButton>
-                // // icon={<Icon name='md-create' style={styles.actionButtonIcon}/>}
-                // offsetY={offset}
-                // offsetX={offsetXValue}
-                // // onPress={() => {this.setState({modal: true})}}
-                // onPress={onLogout}
         )
     }
 
     // To open compose screen
-    renderModal() {
-        return (
-            <Modal
-                animationType={"slide"}
-                transparent={false}
-                visible={this.state.modal}
-                onRequestClose={() => {}}
-            >
-                <ComposeMail onPress={() => this.setState({modal: false})} />
-            </Modal>
-        )
-    }
+    // renderModal() {
+    //     return (
+    //         <Modal
+    //             animationType={"slide"}
+    //             transparent={false}
+    //             visible={this.state.modal}
+    //             onRequestClose={() => {}}
+    //         >
+    //             <ComposeMail onPress={() => this.setState({modal: false})} />
+    //         </Modal>
+    //     )
+    // }
 
     render() {
-        console.log(this.state.userData)
         const {modal} = this.state;
         if (this.state.isLoading) {
-            console.log("innn")
           return (<View><Text>Loading...</Text></View>)
         }
-        console.log("out")
         return (
             <View style={{flex: 1}}>
                 <StatusBar animated={true} barStyle={modal ? "default" : "light-content"}/>
                 <Header/>
                 <MailList showUndo={this.showUndo} data={this.state.userData}/>
                 {this.renderFOB()}
-                {this.renderUndo()}
                 {this.renderModal()}
+                {this.renderUndo()}
             </View>
         )
     }

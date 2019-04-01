@@ -4,7 +4,7 @@ import tokenClient from './api/TokenClient';
 import { Button, Text, } from 'react-native-elements';
 import Login from './screens/Login'
 import Home from './screens/Home'
-
+ 
 
 export default class Index extends Component {
   state = {
@@ -20,7 +20,7 @@ export default class Index extends Component {
   }
 
   async componentDidMount() {
-   await this.checkAuthentication()
+    await this.checkAuthentication()
   }
 
 
@@ -32,8 +32,8 @@ export default class Index extends Component {
     .catch((err) => {
       console.log("Error", err)
     })
-
-    this.checkAuthentication()
+    
+    this.checkAuthentication();
   }
 
   logOut = async() => {
